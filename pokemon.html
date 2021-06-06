@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pokedex</title>
+    <meta name="description" content="Pokedex App" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon/icon-192.png">
+    <meta name="theme-color" content="#e0e0e0" />
+</head>
+
+<body>
+
+    <!-- Navigasi -->
+    <nav class="transparent z-depth-0" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="index.html" class="left">
+                <i class="large material-icons">arrow_back</i>
+            </a>
+            
+            <!-- <div class="fixed-action-btn"> -->
+                <a href="#" class="right" id="save">
+                  <i class="large material-icons">favorite_border</i>
+                </a>
+            <!-- </div> -->
+        
+            <!-- <div class="fixed-action-btn"> -->
+                <a href="#" class="right" id="delete">
+                    <i class="large material-icons">favorite</i>
+                </a>
+            <!-- </div> -->
+            
+        </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+
+    <div id="body-content"></div>
+
+
+    <script src="main.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var isFromSaved = urlParams.get("saved");
+            var btnSave = document.getElementById("save");
+            var btnDelete = document.getElementById("delete");
+            var id = urlParams.get("id");
+
+            btnDelete.style.display = 'none';
+
+            if (isFromSaved) {
+                btnSave.style.display = 'none';
+                btnDelete.style.display = 'block';
+                getSavedDetailPokemon();
+            } else {
+                var item = getDetailPokemon();
+            }
+
+            btnSave.onclick = function() {
+                M.toast({html: 'Pokemon saved successfully', classes: 'rounded'});
+                console.log("Tombol Save di klik.");
+                item.then(function(pokemon) {
+                    savePokemons(pokemon);
+                });
+                btnSave.style.display = "none";
+                btnDelete.style.display = "block";
+            };
+
+            btnDelete.onclick = function() {
+                M.toast({html: 'Pokemon deleted successfully', classes: 'rounded'});
+                console.log("Tombol Delete di klik.");
+                deletePokemon(id).then(() => {
+                    btnSave.style.display = "none";
+                    btnDelete.style.display = "none";
+                    location.href = "index.html";
+                });
+            };
+
+        });
+    </script>
+</body>
+
+</html>

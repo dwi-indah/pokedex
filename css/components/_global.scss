@@ -8,12 +8,14 @@ html {
 }
 
 body {
+  font-family: 'Inter', serif;
   // display: flex;
   // min-height: 100vh;
   // flex-direction: column;
 }
 
 main {
+  padding: 10vw auto;
   // flex: 1 0 auto;
 }
 
@@ -217,41 +219,6 @@ video.responsive-video {
   }
 }
 
-// Breadcrumbs
-.breadcrumb {
-  font-size: 18px;
-  color: rgba(255,255,255, .7);
-
-  i,
-  [class^="mdi-"], [class*="mdi-"],
-  i.material-icons {
-    display: inline-block;
-    float: left;
-    font-size: 24px;
-  }
-
-  &:before {
-    content: '\E5CC';
-    color: rgba(255,255,255, .7);
-    vertical-align: top;
-    display: inline-block;
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 25px;
-    margin: 0 10px 0 8px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  &:first-child:before {
-    display: none;
-  }
-
-  &:last-child {
-    color: #fff;
-  }
-}
-
 // Parallax
 .parallax-container {
   position: relative;
@@ -401,6 +368,7 @@ table {
   display: table;
   border-collapse: collapse;
   border-spacing: 0;
+  margin-top: 1rem;
 
   &.striped {
     tr {
@@ -430,10 +398,6 @@ table {
       text-align: center;
     }
   }
-}
-
-tr {
-  border-bottom: 1px solid $table-border-color;
 }
 
 td, th{
@@ -642,7 +606,7 @@ td, th{
 // Progress Bar
 .progress {
     position: relative;
-    height: 4px;
+    height: 1px;
     display: block;
     width: 100%;
     background-color: lighten($progress-bar-color, 40%);

@@ -5,16 +5,16 @@
     .tab a,
     .tab.disabled a,
     .tab.disabled a:hover {
-      color: rgba(255,255,255,0.7);
+      color: #616161;
     }
 
     .tab a:hover,
     .tab a.active {
-      color: #fff;
+      color: #000000;
     }
 
     .indicator {
-      background-color: #fff;
+      background-color: rgb(0, 216, 180);
     }
   }
 
@@ -42,22 +42,22 @@
     height: 48px;
     padding: 0;
     margin: 0;
-    text-transform: uppercase;
+    text-transform: capitalize;
 
     a {
       &:focus,
       &:focus.active {
-        background-color: transparentize($tabs-underline-color, .8);
+        background-color: transparentize(rgba(0, 216, 180, 0.589), .8);
         outline: none;
       }
 
       &:hover,
       &.active {
         background-color: transparent;
-        color: $tabs-text-color;
+        color: #000000;
       }
 
-      color: rgba($tabs-text-color, .7);
+      color: #616161;
       display: block;
       width: 100%;
       height: 100%;
@@ -70,7 +70,7 @@
 
     &.disabled a,
     &.disabled a:hover {
-      color: rgba($tabs-text-color, .4);
+      color: #000000;
       cursor: default;
     }
   }
@@ -78,7 +78,7 @@
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: $tabs-underline-color;
+    background-color: rgb(0, 216, 180);
     will-change: left, right;
   }
 }

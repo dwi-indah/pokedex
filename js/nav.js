@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 	// SIDEBAR NAVIGATION
-	var elems = document.querySelectorAll('.sidenav');
+	let elems = document.querySelectorAll('.sidenav');
 	M.Sidenav.init(elems);
 	loadNav();
 
-	function loadNav()
-	{
-		var xhttp = new XMLHttpRequest();
+	function loadNav() {
+		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4){
 				if(this.status != 200) return;
 
 				// Muat daftar tautan menu
-				document.querySelectorAll(".topnav, .sidenav")
-				.forEach(function(elm){
+				document.querySelectorAll(".topnav, .sidenav").forEach(function(elm){
 					elm.innerHTML = xhttp.responseText;
 				});
 
@@ -23,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
 				.forEach(function(elm){
 					elm.addEventListener('click', function(event){
 						// Tutup sidenav
-						var sidenav = document.querySelector('.sidenav');
+						let sidenav = document.querySelector('.sidenav');
 						M.Sidenav.getInstance(sidenav).close();
 						
 						// Muat konten halaman yang dipanggil 
@@ -38,16 +36,23 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 	
 	// Load page content
-	var page = window.location.hash.substr(1);
+	let page = window.location.hash.substr(1);
 	if(page == '') page = 'home';
 	loadPage(page);
 
 	function loadPage(page)
 	{
-		var xhttp = new XMLHttpRequest();
+		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4){
-				var content = document.querySelector(".body-content");
+				let content = document.querySelector("#body-content");
+
+				if(page === 'home') {
+					getPokemons();
+				} else if(page === 'favourite') {
+					getSavedPokemons();
+				}
+
 				if(this.status == 200) {
 					content.innerHTML = xhttp.responseText;
 				} else if(this.status == 404) {
